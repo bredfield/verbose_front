@@ -1,0 +1,29 @@
+<!doctype html>
+<html ng-app="Verbose">
+<head>
+    <title>Glossary</title>
+    <link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='styles/dist/main.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<div id="app-container" class="container">
+ <div class="navbar">
+ 	<div class="navbar-inner navbar-inner-gray navbar-fixed-top">
+    <ul class="nav">
+      <li><a href="#/" class="brand">Verbose</a></li>
+      <li active-link><a href="#/">Words</a></li>
+      <li active-link><a href="#/search">Search</a></li>
+      <li active-link><a href="#/quiz">Quiz</a></li>
+    </ul>
+</div>
+</div>
+
+	<div class="content" ui-view>
+	</div>
+
+</div>
+
+<script src="scripts/dist/main.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

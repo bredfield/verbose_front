@@ -1,0 +1,27 @@
+<div class="btn-group btn-group-square learned-btn-group">
+    <button class="btn btn-none" ng-model="query.learned" btn-radio="false">Needs Learning</button>
+    <button class="btn btn-none" ng-model="query.learned" btn-radio="true">Learned</button>
+</div><br>
+
+<accordion close-others="oneAtATime">
+    <accordion-group heading="Filters">
+   		<form class="form">
+	        <input ng-model="query.$" placeholder="Filter the list" />
+			<select ng-model="orderProp">
+				<option value="-dateAdded">Newest</option>
+				<option value="dateAdded">Oldest</option>
+				<option value="name">Alphabetical</option>
+			</select>
+		</form>
+    </accordion-group>
+</accordion>
+
+<ul class="unstyled">
+	<li class="li-lined" ng-repeat="word in words | orderBy:orderProp | filter:query | filter:learnedToggle">
+		<h4><a href="#/words/{{word.name}}">{{word.name | capitalize}}</a></h4>
+		<p>{{word.definition}}</p>
+		<div class="btn" ng-click="toggleLearned(word)">{{learnedText}}</div>
+		<div class="btn" ng-click="remove(word)">Delete</div>
+		<div class="border-bottom"></div>
+	</li>
+</ul>
