@@ -8,11 +8,7 @@
     }
     appRoot = "scripts/app";
     $urlRouterProvider.otherwise("/");
-    $stateProvider.state('login', {
-      url: '/login',
-      templateUrl: "" + appRoot + "/login/login.html",
-      controller: 'loginCtrl'
-    }).state('index', {
+    $stateProvider.state('index', {
       url: '/',
       templateUrl: "views/wordList.html",
       controller: 'listCtrl'
@@ -30,15 +26,6 @@
       controller: "quizCtrl"
     });
     return delete $httpProvider.defaults.headers.common['X-Requested-With'];
-  }).run(function($rootScope, $location, $state, Auth) {
-    return $rootScope.$on("$stateChangeStart", function(event, next, current) {
-      if (next.url === "login") {
-        return;
-      }
-      if ($rootScope.user == null) {
-        return $location.path('/login');
-      }
-    });
   });
 
 }).call(this);
@@ -113,16 +100,10 @@
 
 (function() {
   angular.module("Verbose").factory('Word', function($rootScope, angularFire, angularFireCollection) {
-    var manageUser, updateLocal, wordService, words;
+    var updateLocal, wordService, words;
     wordService = {};
     words = [];
     wordService.getAll = function() {
-      var fire, user;
-      user = manageUser();
-      if (!user) {
-        return;
-      }
-      fire = angularFireCollection("https://verbose.firebaseio.com/users/" + user.id + "/words");
       words = store.get('words');
       return words;
     };
@@ -146,30 +127,17 @@
       return updateLocal();
     };
     wordService.add = function(newWord) {
-      var fire, user;
-      user = $rootScope.user;
-      fire = angularFireCollection("https://verbose.firebaseio.com/users/" + user.id + "/words");
-      fire.add(newWord);
+      words.push(newWord);
       return updateLocal();
     };
     wordService.remove = function(which) {
       var pos;
       pos = words.indexOf(which);
-      fire.remove(which);
       words.splice(pos, 1);
       return updateLocal();
     };
     updateLocal = function() {
       return store.set('words', words);
-    };
-    manageUser = function() {
-      var user;
-      user = $rootScope.user;
-      if (user == null) {
-        return false;
-      } else {
-        return user;
-      }
     };
     return wordService;
   });
