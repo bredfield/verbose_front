@@ -1,16 +1,92 @@
 @import "bootstrap";
 @import "responsive";
-
+.max-width{
+  max-width:400px;
+  margin:0 auto;
+}
 .content{
-	// max-width:400px;
-	// margin:20px auto;
-	padding-top:60px
+	padding-top: @navbarHeight + 20;
+}
+.second-content {
+  padding-top: @navbarHeight * 2 + 20;
+}
+.container{
+	max-width:400px;
+  &.container-no-padding{
+    padding:0;
+  }
+}
+.fade-enter-setup, .fade-leave-setup {
+      transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+    }
+    .fade-enter-setup,
+    .fade-leave-setup.fade-leave-start {
+      opacity: 0;
+    }
+    .fade-leave-setup,
+    .fade-enter-setup.fade-enter-start {
+      opacity: 1;
+    }
+ 
+    
+html, a{
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0); 
+  // -webkit-user-select: none;
+}
+
+.subheader {
+  height: @navbarHeight;
+  position: fixed;
+  top: @navbarHeight + 1;
+  border-bottom: 1px solid @grayLighter;
+  margin-bottom:20px;
+  z-index: @zindexFixedNavbar;
+  
+  &.subheader-tabs {
+    .btn {
+      padding: 14px 12px;
+      
+      &.active {
+        background: @grayLighter;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.padding-wrapper{
+  padding:0 20px;
 }
 
 .list-options{
 	background:@grayLighter;
 }
 
-.learned-btn-group{
-	margin-bottom:20px;
+.form-filters{
+  margin-bottom:0px;
+  padding-bottom:15px;
+  border-bottom:1px solid @grayLighter  
+}
+
+
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+  // margin:0 -20px;
+  
+
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+  // padding:0 20px;
+}
+.swipe-wrap > div {
+  float:left;
+  width:100%;
+  position: relative;
+  
+
 }

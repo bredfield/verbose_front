@@ -106,6 +106,7 @@ ul, ol {
   padding: 0;
   margin: 0 0 @baseLineHeight / 2 25px;
 }
+
 ul ul,
 ul ol,
 ol ol,
@@ -119,8 +120,8 @@ li {
 
 li.li-lined{
   position:relative;
-  padding-bottom:10px;
-  
+  padding:13px 0 15px 0;
+  // padding:0 20px;
   .border-bottom{
     height:1px;
     width:90%;
@@ -128,6 +129,21 @@ li.li-lined{
     position:absolute;
     right:0;
     bottom:0;
+  }
+  a.link-cell{
+    text-decoration:none;
+    display: block;
+    padding:0 20px;
+    color:@textColor;
+    
+    .title{
+      color:@red;
+      padding:0;
+      margin:0 0 3px 0;
+    }
+    p{
+      margin-bottom:0
+    }
   }
 }
 

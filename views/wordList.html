@@ -1,27 +1,41 @@
-<div class="btn-group btn-group-square learned-btn-group">
+<div class="btn-group btn-group-square learned-btn-group subheader subheader-tabs">
     <button class="btn btn-none" ng-model="query.learned" btn-radio="false">Needs Learning</button>
     <button class="btn btn-none" ng-model="query.learned" btn-radio="true">Learned</button>
-</div><br>
+</div>
 
-<accordion close-others="oneAtATime">
-    <accordion-group heading="Filters">
-   		<form class="form">
-	        <input ng-model="query.$" placeholder="Filter the list" />
-			<select ng-model="orderProp">
-				<option value="-dateAdded">Newest</option>
-				<option value="dateAdded">Oldest</option>
-				<option value="name">Alphabetical</option>
-			</select>
-		</form>
-    </accordion-group>
-</accordion>
-
+<div class="container second-content">
+	<form class="form-inline form-filters">
+        <input type="text" ng-model="query.$" placeholder="Filter by anything" class="input-medium">
+        <select ng-model="orderProp.$" class="input-small pull-right">
+			<option value="-dateAdded">Newest</option>
+			<option value="dateAdded">Oldest</option>
+			<option value="name">Alphabetical</option>
+		</select>
+    </form>
+	
+</div><!-- .container -->
+<div class="container container-no-padding">
 <ul class="unstyled">
-	<li class="li-lined" ng-repeat="word in words | orderBy:orderProp | filter:query | filter:learnedToggle">
-		<h4><a href="#/words/{{word.name}}">{{word.name | capitalize}}</a></h4>
-		<p>{{word.definition}}</p>
-		<div class="btn" ng-click="toggleLearned(word)">{{learnedText}}</div>
-		<div class="btn" ng-click="remove(word)">Delete</div>
-		<div class="border-bottom"></div>
-	</li>
-</ul>
+		<li lined-item ng-hide="query.learned" class="text-center">
+			<a href="#/search" class="add-word btn btn-block-level">Add a word</a>
+		</li>
+		<li lined-item ng-repeat="word in words | orderBy:orderProp.$ | filter:query">
+			
+				<swipe>
+					<div>
+						<a href="#/words/{{word.name}}" class="link-cell">
+							<h4 class="title">{{word.name | capitalize}} <small>( {{word.partOfSpeech}} )</small></h4>
+							<p>{{word.definition}}</p>
+						</a>
+					</div>
+					<div>
+						<div class="padding-wrapper" v-center>
+							<div class="btn" ng-click="toggleLearned(word)">{{learnedText}}</div>
+							<div class="btn" ng-click="remove(word)">Delete</div>
+						</div>
+					</div>
+				</swipe>
+			
+		</li>
+	</ul>
+</div>

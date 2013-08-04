@@ -1,25 +1,30 @@
 <!doctype html>
 <html ng-app="Verbose">
 <head>
-    <title>Glossary</title>
+    <title>Verbose</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link href='http://fonts.googleapis.com/css?family=Cardo:400,400italic,700' rel='stylesheet' type='text/css'>
     <link href='styles/dist/main.css' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
-<div id="app-container" class="container">
+<div id="app-container">
  <div class="navbar">
  	<div class="navbar-inner navbar-inner-gray navbar-fixed-top">
+    <div class="container">
     <ul class="nav">
       <li><a href="#/" class="brand">Verbose</a></li>
       <li active-link><a href="#/">Words</a></li>
       <li active-link><a href="#/search">Search</a></li>
       <li active-link><a href="#/quiz">Quiz</a></li>
     </ul>
+  </div>
 </div>
 </div>
 
-	<div class="content" ui-view>
+	<div class="" ui-view ng-animate="{enter:'fade-enter'}">
 	</div>
 
 </div>

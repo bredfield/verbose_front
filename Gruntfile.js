@@ -25,6 +25,10 @@ module.exports = function(grunt) {
         files: ['scripts/app.coffee', 'scripts/**/*.coffee'],
         tasks: ['coffee','concat']
       },
+      tests:{
+        files: ['scripts/test/*.spec.coffee'],
+        tasks: ['coffee:tests']
+      },
       styles:{
         files:['styles/*.less'],
         tasks: ['less']
@@ -40,7 +44,16 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files:{
-          "scripts/app.js":["scripts/app.coffee", "scripts/**/*.coffee"]
+          "scripts/app.js":["scripts/app.coffee", "scripts/app/**/*.coffee"]
+        }
+
+      },
+      tests:{
+        options:{
+          bare:true
+        },
+        files:{
+          "scripts/test/test.spec.js":["scripts/test/test.spec.coffee"]
         }
       }
     },
@@ -48,12 +61,15 @@ module.exports = function(grunt) {
       dist: {
         src: [
           'scripts/libs/lodash.js',
+          'scripts/libs/swipe.js',
           'scripts/libs/store.js',
           'scripts/libs/jquery-2.0.2.min.js',
+          'scripts/libs/firebase.js',
+          'scripts/libs/firebase-simple-login.js',
           'scripts/libs/angular.js',
+          'scripts/libs/angularFire.js',
           'scripts/libs/angular-resource.js',
           'scripts/libs/angular-ui-router.js',
-          'scripts/libs/ui-bootstrap-0.4.0.js',
           'scripts/libs/ui-bootstrap-tpls-0.4.0.js',
           'scripts/app.js'],
         dest: 'scripts/dist/main.js'

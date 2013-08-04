@@ -1,0 +1,17 @@
+<div class="container content">
+	<form ng-submit="login()">
+  <fieldset>
+    <legend>Login</legend>
+    <label>Email</label>
+    <input type="text" placeholder="Email" ng-model="loginForm.email">  
+    
+    <label>Password</label>
+    <input ng-model="loginForm.password" type="password" placeholder="Your password">
+    <label class="checkbox">
+      <input type="checkbox"> Check me out
+    </label>
+    <button type="submit" class="btn">Submit</button>
+  </fieldset>
+</form>
+<div ng-click="logout()" class="btn">Logout</div>
+</div><!-- .container content -->

@@ -1,4 +1,20 @@
-<h2>{{word.name}}</h2>
-<p>{{word.definition}}</p>
-<p>Date added: {{word.dateAdded | date:"M/dd/yy"}}</p>
-<p>Part of speech: {{word.partOfSpeech}}
+<div class="container content">
+<div ng-show="word">
+	<h2>{{word.name | capitalize}} <small>({{word.partOfSpeech}})</small></h2>
+	<p>{{word.definition}}</p>
+	<hr>
+	<ul class="unstyled">
+		<li lined-items><strong>Hyphenation</strong>: <span ng-bind-html-unsafe="word.hyphenation"></span></li>
+		<li lined-items><strong>Synonyms</strong>: {{synonymString}}</li>
+		<li lined-items><strong>Phrases</strong>: {{phrasesString}}</li>
+		<li lined-items><strong>Date added</strong>: {{word.dateAdded | date:"M/dd/yy"}}</li>
+		<li lined-items><strong>Date learned</strong>: {{dateLearned | date:"M/dd/yy"}}</li>
+	</ul>
+	<hr>
+	<div class="btn" ng-click="toggleLearned(word)">{{learnedText}}</div>
+	<div class="btn" ng-click="remove(word)">Delete</div>
+</div>
+<div ng-hide="word">
+	<h1>Word not saved</h1>
+</div>
+</div>
